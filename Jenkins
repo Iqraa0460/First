@@ -1,0 +1,29 @@
+
+tools {
+jdk 'JDK'
+        maven 'maven_build'
+        maven 'maven'
+}
+
+environment {
+// Define environment variables for Tomcat
+WAR_FILE = 'target/First.war' // Path to the generated WAR file (use forward slashes)
+TOMCAT_URL = 'http://localhost:7080' // Tomcat server URL
+TOMCAT_USER = 'Iqra' // Tomcat Manager username
+TOMCAT_PASSWORD = 'Iqra123' // Tomcat Manager password
+}
+
+stages {
+stage('Clean Project') {
+steps {
+bat "mvn clean"
+}
+}
+
+stage('Build Project') {
+steps {
+bat "mvn package"
+}
+}
+
+stage('Deploy to Tomcat') {
